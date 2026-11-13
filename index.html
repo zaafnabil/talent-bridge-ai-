@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Talent Bridge</title>
+<style>
+body {
+  font-family: Arial;
+  background: #f2f6fc;
+  text-align: center;
+  margin: 0;
+}
+header {
+  background: #102a56;
+  color: white;
+  padding: 30px 15px;
+}
+h1 { font-size: 30px; }
+main { padding: 25px; }
+.card {
+  background: white;
+  padding: 20px;
+  margin: 15px auto;
+  border-radius: 12px;
+  max-width: 350px;
+}
+button {
+  background: #1765c1;
+  color: white;
+  border: 0;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>TALENT BRIDGE</h1>
+  <p id="welcome">Discover Your Talent</p>
+  <button onclick="changeLanguage()">
+    العربية / English
+  </button>
+</header>
+
+<main>
+  <div class="card">
+    <h2 id="title">Welcome to Talent Bridge</h2>
+    <p id="description">
+      Connect athletes with coaches and clubs.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2 id="sports">Discover Sports Talents</h2>
+    <p>⚽ Football | كرة القدم</p>
+    <p>🏀 Basketball | كرة السلة</p>
+    <p>🏃 Athletics | ألعاب القوى</p>
+  </div>
+
+  <button id="join">Join Us</button>
+</main>
+
+<script>
+let arabic = false;
+
+function changeLanguage() {
+  arabic = !arabic;
+
+  document.getElementById("welcome").textContent =
+    arabic ? "اكتشف موهبتك" : "Discover Your Talent";
+
+  document.getElementById("title").textContent =
+    arabic ? "مرحبا بك في جسر المواهب" :
+    "Welcome to Talent Bridge";
+
+  document.getElementById("description").textContent =
+    arabic ? "نربط الرياضيين بالمدربين والأندية" :
+    "Connect athletes with coaches and clubs.";
+
+  document.getElementById("sports").textContent =
+    arabic ? "اكتشف المواهب الرياضية" :
+    "Discover Sports Talents";
+
+  document.getElementById("join").textContent =
+    arabic ? "انضم إلينا" : "Join Us";
+}
+</script>
+
+</body>
+</html>
