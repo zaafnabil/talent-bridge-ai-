@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register - Talent Bridge</title>
+
+<style>
+body {
+  font-family: Arial;
+  background: #f2f6fc;
+  text-align: center;
+  padding: 20px;
+}
+h1 {
+  color: #102a56;
+}
+form {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: auto;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 9px 0;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+button {
+  background: #1765c1;
+  color: white;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Talent Bridge</h1>
+<h2>Sports Registration</h2>
+<p>إنشاء ملفك الرياضي</p>
+
+<form onsubmit="register(event)">
+
+<input type="text" placeholder="Full Name | الاسم الكامل" required>
+
+<input type="number" placeholder="Age | العمر" min="1" required>
+
+<input type="text" placeholder="Country | البلد" required>
+
+<select required>
+<option value="">Choose Sport | اختر الرياضة</option>
+<option>Football | كرة القدم</option>
+<option>Basketball | كرة السلة</option>
+<option>Swimming | السباحة</option>
+<option>Athletics | ألعاب القوى</option>
+<option>Other | رياضة أخرى</option>
+</select>
+
+<textarea placeholder="Your Skills | مهاراتك" required></textarea>
+
+<button type="submit">
+Create Profile | إنشاء الملف الشخصي
+</button>
+
+</form>
+
+<script>
+function register(event) {
+  event.preventDefault();
+  alert("Registration completed! تم التسجيل بنجاح");
+}
+</script>
+
+</body>
+</html>
