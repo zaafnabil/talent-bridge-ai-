@@ -1,103 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Talent Bridge</title>
-<style>
-body {
-  font-family: Arial;
-  background: #f2f6fc;
-  text-align: center;
-  margin: 0;
-}
-header {
-  background: #102a56;
-  color: white;
-  padding: 30px 15px;
-}
-h1 { font-size: 30px; }
-main { padding: 25px; }
-.card {
-  background: white;
-  padding: 20px;
-  margin: 15px auto;
-  border-radius: 12px;
-  max-width: 350px;
-}
-button {
-  background: #1765c1;
-  color: white;
-  border: 0;
-  padding: 12px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-</style>
-  <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0d6efd">
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-  }
-</script>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Bridge AI - التوجيه الرياضي</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #1e293b;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 {
+            text-align: center;
+            color: #0f172a;
+            margin-bottom: 5px;
+            font-size: 24px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 15px;
+            box-sizing: border-box;
+            background-color: #f8fafc;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #1d4ed8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #1e40af;
+        }
+        .hidden {
+            display: none;
+        }
+        .result-card {
+            background-color: #eff6ff;
+            border: 2px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .result-title {
+            color: #1e3a8a;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+        .badge {
+            display: inline-block;
+            background: #1d4ed8;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <h1>TALENT BRIDGE</h1>
-  <p id="welcome">Discover Your Talent</p>
-  <button onclick="changeLanguage()">
-    العربية / English
-  </button>
-</header>
+<div class="container">
+    <h1>Talent Bridge AI</h1>
+    <div class="subtitle">منصة التقييم والتوجيه الرياضي الذكي</div>
 
-<main>
-  <div class="card">
-    <h2 id="title">Welcome to Talent Bridge</h2>
-    <p id="description">
-      Connect athletes with coaches and clubs.
-    </p>
-  </div>
+    <!-- المرحلة 1: التسجيل الأساسي -->
+    <div id="step1">
+        <div class="form-group">
+            <label>الاسم الكامل | Full Name</label>
+            <input type="text" id="fullName" placeholder="أدخل اسم الرياضي">
+        </div>
+        <div class="form-group">
+            <label>العمر | Age</label>
+            <input type="number" id="age" placeholder="مثال: 19">
+        </div>
+        <div class="form-group">
+            <label>الرياضة المفضلة | Sport</label>
+            <select id="sport">
+                <option value="كرة القدم">كرة القدم (Football)</option>
+                <option value="ألعاب القوى">ألعاب القوى (Athletics)</option>
+                <option value="كرة السلة">كرة السلة (Basketball)</option>
+                <option value="رياضات قتالية">رياضات قتالية (Combat Sports)</option>
+            </select>
+        </div>
+        <button onclick="goToTests()">التالي: الانتقال إلى الاختبارات البدنية ⬅️</button>
+    </div>
 
-  <div class="card">
-    <h2 id="sports">Discover Sports Talents</h2>
-    <p>⚽ Football | كرة القدم</p>
-    <p>🏀 Basketball | كرة السلة</p>
-    <p>🏃 Athletics | ألعاب القوى</p>
-  </div>
+    <!-- المرحلة 2: الاختبارات البدنية والتقييم -->
+    <div id="step2" class="hidden">
+        <div class="badge">المرحلة 2: قياس المؤشرات البدنية</div>
+        
+        <div class="form-group">
+            <label>1. اختبار السرعة (30 متر عدو - بالثواني):</label>
+            <input type="number" step="0.1" id="sprint30m" placeholder="مثال: 4.2">
+        </div>
 
-  <a href="register.html">
-<button id="join">Join Us</button>
-  </a>
-</main>
+        <div class="form-group">
+            <label>2. اختبار القوة الانفجارية (الوثب العمودي - سم):</label>
+            <input type="number" id="verticalJump" placeholder="مثال: 55">
+        </div>
+
+        <div class="form-group">
+            <label>3. مستوى التحمل والتعافي بعد الجهد:</label>
+            <select id="endurance">
+                <option value="high">مرتفع (استرجاع سريع للنبض)</option>
+                <option value="medium">متوسط (تعب طبيعي)</option>
+                <option value="low">منخفض (إرهاق سريع)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>4. التحكم النفسي تحت ضغط المنافسة:</label>
+            <select id="mental">
+                <option value="high">تركيز عالٍ وهدوء تام</option>
+                <option value="medium">توتر خفيف يزول مع اللعب</option>
+                <option value="low">ارتباك وفقدان للتركيز</option>
+            </select>
+        </div>
+
+        <button onclick="calculateGuidance()">تحليل النتائج وإصدار التوجيه 📊</button>
+    </div>
+
+    <!-- المرحلة 3: نتيجة التوجيه الرياضي -->
+    <div id="step3" class="hidden">
+        <div class="result-card">
+            <div class="result-title" id="athleteGreeting">تقرير التوجيه الرياضي</div>
+            <p id="physicalProfile"></p>
+            <p id="trainingAdvice"></p>
+            <p id="mentalAdvice"></p>
+        </div>
+        <button onclick="resetApp()" style="background-color: #475569; margin-top: 15px;">إجراء تقييم لرياضي جديد 🔄</button>
+    </div>
+</div>
 
 <script>
-let arabic = false;
+    function goToTests() {
+        const name = document.getElementById('fullName').value;
+        const age = document.getElementById('age').value;
+        if (!name || !age) {
+            alert("يرجى إدخال الاسم والعمر أولاً للمتابعة.");
+            return;
+        }
+        document.getElementById('step1').classList.add('hidden');
+        document.getElementById('step2').classList.remove('hidden');
+    }
 
-function changeLanguage() {
-  arabic = !arabic;
+    function calculateGuidance() {
+        const name = document.getElementById('fullName').value;
+        const sport = document.getElementById('sport').value;
+        const sprint = parseFloat(document.getElementById('sprint30m').value);
+        const jump = parseFloat(document.getElementById('verticalJump').value);
+        const endurance = document.getElementById('endurance').value;
+        const mental = document.getElementById('mental').value;
 
-  document.getElementById("welcome").textContent =
-    arabic ? "اكتشف موهبتك" : "Discover Your Talent";
+        if (!sprint || !jump) {
+            alert("يرجى إدخال أرقام اختبار السرعة والوثب بدقة.");
+            return;
+        }
 
-  document.getElementById("title").textContent =
-    arabic ? "مرحبا بك في جسر المواهب" :
-    "Welcome to Talent Bridge";
+        let profileText = "";
+        let trainingText = "";
+        let mentalText = "";
 
-  document.getElementById("description").textContent =
-    arabic ? "نربط الرياضيين بالمدربين والأندية" :
-    "Connect athletes with coaches and clubs.";
+        if (sprint <= 4.3 && jump >= 50) {
+            profileText = "⚡ <b>البصمة البدنية:</b> رياضي انفجاري سريع (ألياف عضلية سريعة الانقباض). مؤهل بامتياز للمناصب الهجومية، العدو السريع، والالتحامات الخاطفة في " + sport + ".";
+        } else if (endurance === "high") {
+            profileText = "🔋 <b>البصمة البدنية:</b> رياضي ذو كفاءة هوائية عالية وقدرة تحمل ممتازة. يناسب الأدوار التي تتطلب مجهوداً مستمراً طوال زمن المنافسة.";
+        } else {
+            profileText = "⚖️ <b>البصمة البدنية:</b> مستوى بدني متوازن يحتاج إلى تطوير القوة المميزة بالسرعة لرفع الكفاءة التنافسية.";
+        }
 
-  document.getElementById("sports").textContent =
-    arabic ? "اكتشف المواهب الرياضية" :
-    "Discover Sports Talents";
+        if (sprint > 4.5) {
+            trainingText = "🏋️ <b>التوجيه البدني:</b> التركيز في الدورات التدريبية القادمة على تدريبات البليومتريك (Plyometrics) وتطوير التردد الخطوي.";
+        } else {
+            trainingText = "🏋️ <b>التوجيه البدني:</b> الحفاظ على السرعة القصوى مع إدماج تمارين الرشاقة وتغيير الاتجاه تحت التعب.";
+        }
 
-  document.getElementById("join").textContent =
-    arabic ? "انضم إلينا" : "Join Us";
-}
+        if (mental === "low") {
+            mentalText = "🧠 <b>التحضير النفسي:</b> يُنصح بتطبيق تقنيات التنفس العميق والهدوء النفسي قبل المنافسات لضبط مستوى الاستثارة العصبية.";
+        } else {
+            mentalText = "🧠 <b>التحضير النفسي:</b> ثبات انفعالي جيد، استمر في استخدام التصور الذهني قبل المباريات.";
+        }
+
+        document.getElementById('athleteGreeting').innerText = "ملف التوجيه: " + name;
+        document.getElementById('physicalProfile').innerHTML = profileText;
+        document.getElementById('trainingAdvice').innerHTML = trainingText;
+        document.getElementById('mentalAdvice').innerHTML = mentalText;
+
+        document.getElementById('step2').classList.add('hidden');
+        document.getElementById('step3').classList.remove('hidden');
+    }
+
+    function resetApp() {
+        document.getElementById('step3').classList.add('hidden');
+        document.getElementById('step1').classList.remove('hidden');
+    }
 </script>
 
 </body>
-</html>
+                  </html>
+                  
