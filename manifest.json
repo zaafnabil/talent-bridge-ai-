@@ -4,12 +4,12 @@
   "start_url": "/talent-bridge-ai-/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0d6efd",
+  "theme_color": "#1d4ed8",
   "icons": [
     {
-      "src": "/talent-bridge-ai-/1795676265971.jpg",
+      "src": "/talent-bridge-ai-/icon-512.png",
       "sizes": "512x512",
-      "type": "image/jpeg"
+      "type": "image/png"
     }
   ]
 }
