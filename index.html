@@ -3,257 +3,1140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="lBH7_YpoAhivzTVCv9LKu2UsNLn3qos0yeYttCfLcJU" />
-    <title>Talent Bridge AI - التوجيه والتقييم الرياضي الذكي</title>
-        
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talent Bridge AI - التوجيه والتقييم الرياضي الذكي</title>
-    
+    <meta name="google-site-verification" content="lBH7_YpoAhivzTVCv9LKu2UsNLn3qos0yeYttCfLcJU">
+    <title>Talent Bridge AI - منصة التقييم والتوجيه واكتشاف المواهب الرياضية</title>
+
     <!-- وسوم الظهور في محركات البحث (SEO) -->
-    <meta name="description" content="منصة Talent Bridge AI الذكية للتقييم البدني، قياس السرعة والوثب العمودي، وتقديم برامج التوجيه الرياضي والنفسي للرياضيين والمدربين.">
-    <meta name="keywords" content="توجيه رياضي, تقييم بدني, تحضير بدني, اختبارات رياضية, كرة القدم, ألعاب القوى, Talent Bridge AI">
+    <meta name="description" content="منصة Talent Bridge AI الذكية لاكتشاف المواهب الرياضية، التقييم البدني والتقني والذهني، تحليل التطور، وإصدار تقارير التوجيه الرياضي.">
+    <meta name="keywords" content="توجيه رياضي, اكتشاف المواهب, تقييم بدني, تحضير بدني, اختبارات رياضية, كرة القدم, ألعاب القوى, Talent Bridge AI">
     <meta name="author" content="ZAAF Nabil">
     <meta name="robots" content="index, follow">
-    
+
     <!-- ربط ملفات التطبيق القابل للتثبيت (PWA) -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#1d4ed8">
 
     <style>
+        :root {
+            --primary: #1d4ed8;
+            --primary-dark: #1e3a8a;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --border: #cbd5e1;
+            --success: #15803d;
+            --success-bg: #dcfce7;
+            --warn: #b45309;
+            --warn-bg: #fef3c7;
+            --soft: #eff6ff;
+        }
+
+        * { box-sizing: border-box; }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #1e293b;
+            padding: 16px;
+            line-height: 1.6;
         }
-        .container {
-            background: white;
-            padding: 25px;
+
+        .app-shell {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .topbar {
+            background: var(--card);
             border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            width: 100%;
-            max-width: 420px;
+            padding: 18px 22px;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
         }
-        h1 {
-            text-align: center;
-            color: #0f172a;
-            margin-bottom: 5px;
-            font-size: 24px;
+
+        .brand h1 {
+            margin: 0;
+            font-size: 22px;
+            color: var(--primary-dark);
         }
-        .subtitle {
-            text-align: center;
-            color: #64748b;
+
+        .brand p {
+            margin: 2px 0 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tab-btn {
+            border: 1px solid var(--border);
+            background: #f8fafc;
+            color: var(--text);
+            padding: 9px 14px;
+            border-radius: 10px;
             font-size: 14px;
-            margin-bottom: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
         }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+            margin-bottom: 18px;
+        }
+
+        .section-title {
+            margin: 0 0 6px;
+            font-size: 19px;
+            color: var(--primary-dark);
+        }
+
+        .section-sub {
+            margin: 0 0 18px;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 14px;
+        }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
+
         label {
             display: block;
-            margin-bottom: 6px;
+            font-size: 13.5px;
             font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
             font-size: 14px;
+            background: #f8fafc;
+            color: var(--text);
+            font-family: inherit;
         }
-        input, select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            font-size: 15px;
-            box-sizing: border-box;
-            background-color: #f8fafc;
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #fff;
         }
-        button {
-            width: 100%;
-            padding: 14px;
-            background-color: #1d4ed8;
-            color: white;
-            border: none;
-            border-radius: 10px;
+
+        .axis-box {
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .axis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+
+        .axis-header h3 {
+            margin: 0;
             font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
+            color: var(--primary-dark);
         }
-        button:hover {
-            background-color: #1e40af;
-        }
-        .hidden {
-            display: none;
-        }
-        .result-card {
-            background-color: #eff6ff;
-            border: 2px solid #bfdbfe;
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: 15px;
-        }
-        .result-title {
-            color: #1e3a8a;
-            font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
+
         .badge {
             display: inline-block;
-            background: #1d4ed8;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
+            padding: 3px 10px;
+            border-radius: 999px;
             font-size: 12px;
-            margin-bottom: 10px;
+            font-weight: 700;
+            background: var(--soft);
+            color: var(--primary-dark);
+        }
+
+        .badge-green {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .badge-warn {
+            background: var(--warn-bg);
+            color: var(--warn);
+        }
+
+        .btn {
+            border: none;
+            border-radius: 10px;
+            padding: 11px 16px;
+            font-size: 14.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: var(--text);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .actions-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .kpi {
+            background: var(--soft);
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .kpi .label {
+            font-size: 12.5px;
+            color: var(--muted);
+        }
+
+        .kpi .value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-top: 4px;
+        }
+
+        .paywall-box {
+            background: #fffbeb;
+            border: 2px dashed #f59e0b;
+            border-radius: 14px;
+            padding: 18px;
+            margin: 16px 0;
+        }
+
+        .plan-card {
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .plan-card h4 {
+            margin: 0 0 6px;
+            color: var(--primary-dark);
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--success);
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: right;
+        }
+
+        th {
+            background: #f8fafc;
+            color: var(--primary-dark);
+        }
+
+        .chart-wrap {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 14px;
+        }
+
+        @media print {
+            .topbar, .nav-tabs, .actions-row, .no-print {
+                display: none !important;
+            }
+            body {
+                background: #fff;
+                padding: 0;
+            }
+            .card {
+                box-shadow: none;
+                border: none;
+            }
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h1>Talent Bridge AI</h1>
-    <div class="subtitle">منصة التقييم والتوجيه الرياضي الذكي</div>
-
-    <!-- المرحلة 1: التسجيل الأساسي -->
-    <div id="step1">
-        <div class="form-group">
-            <label>الاسم الكامل | Full Name</label>
-            <input type="text" id="fullName" placeholder="أدخل اسم الرياضي">
+<div class="app-shell">
+    <!-- الشريط العلوي والتنقل -->
+    <header class="topbar">
+        <div class="brand">
+            <h1>Talent Bridge AI</h1>
+            <p>منصة التقييم والتوجيه واكتشاف المواهب الرياضية بالذكاء الاصطناعي</p>
         </div>
-        <div class="form-group">
-            <label>العمر | Age</label>
-            <input type="number" id="age" placeholder="مثال: 19">
-        </div>
-        <div class="form-group">
-            <label>الرياضة المفضلة | Sport</label>
-            <select id="sport">
-                <option value="كرة القدم">كرة القدم (Football)</option>
-                <option value="ألعاب القوى">ألعاب القوى (Athletics)</option>
-                <option value="كرة السلة">كرة السلة (Basketball)</option>
-                <option value="رياضات قتالية">رياضات قتالية (Combat Sports)</option>
-            </select>
-        </div>
-        <button onclick="goToTests()">التالي: الانتقال إلى الاختبارات البدنية ⬅️</button>
-    </div>
+        <nav class="nav-tabs" aria-label="أقسام المنصة">
+            <button class="tab-btn active" onclick="switchView('assessment')">1. التسجيل والاختبارات</button>
+            <button class="tab-btn" onclick="switchView('profile')">2. ملف الرياضي والنتائج</button>
+            <button class="tab-btn" onclick="switchView('admin')">3. لوحة الإدارة والمدربين</button>
+        </nav>
+    </header>
 
-    <!-- المرحلة 2: الاختبارات البدنية والتقييم -->
-    <div id="step2" class="hidden">
-        <div class="badge">المرحلة 2: قياس المؤشرات البدنية</div>
-        
-        <div class="form-group">
-            <label>1. اختبار السرعة (30 متر عدو - بالثواني):</label>
-            <input type="number" step="0.1" id="sprint30m" placeholder="مثال: 4.2">
+    <!-- القسم 1: التسجيل ومكتبة الاختبارات -->
+    <section id="view-assessment" class="card">
+        <h2 class="section-title">إنشاء ملف رياضي وإدخال نتائج الاختبارات</h2>
+        <p class="section-sub">يمكن للرياضي أو المدرب/المختص إدخال البيانات ونتائج الاختبارات عبر المحاور الستة (السرعة، القوة، الرشاقة والتنسيق، التحمل، التقنية، والذهنية/الإدراكية). يمكنك تعبئة الحقول المتاحة حالياً دون إلزامية جميع الحقول دفعة واحدة.</p>
+
+        <form id="assessmentForm" onsubmit="submitAssessment(event)">
+            <div class="axis-box">
+                <div class="axis-header">
+                    <h3>البيانات الأساسية والحساب</h3>
+                    <span class="badge">حساب رياضي / مدرب</span>
+                </div>
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label for="athleteName">الاسم الكامل للرياضي *</label>
+                        <input type="text" id="athleteName" required placeholder="مثال: أمين بن علي">
+                    </div>
+                    <div class="form-group">
+                        <label for="athleteAge">العمر (سنة) *</label>
+                        <input type="number" id="athleteAge" min="6" max="50" required placeholder="مثال: 18">
+                    </div>
+                    <div class="form-group">
+                        <label for="athleteCountry">البلد / الولاية</label>
+                        <input type="text" id="athleteCountry" placeholder="مثال: الجزائر - عين الدفلى">
+                    </div>
+                    <div class="form-group">
+                        <label for="athleteSport">الرياضة المستهدفة *</label>
+                        <select id="athleteSport" onchange="renderTechnicalInputs()">
+                            <option value="كرة القدم">كرة القدم (Football)</option>
+                            <option value="ألعاب القوى">ألعاب القوى (Athletics)</option>
+                            <option value="كرة السلة">كرة السلة (Basketball)</option>
+                            <option value="رياضات قتالية">رياضات قتالية (Combat Sports)</option>
+                            <option value="السباحة">السباحة (Swimming)</option>
+                            <option value="رياضات أخرى">رياضات أخرى</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="enteredBy">من أدخل النتائج؟</label>
+                        <select id="enteredBy">
+                            <option value="الرياضي">الرياضي بنفسه</option>
+                            <option value="المدرب أو المختص">المدرب أو المختص</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="coachNotes">ملاحظات فنية أو صحية مختصرة</label>
+                        <input type="text" id="coachNotes" placeholder="مثال: اختبار صباحي على أرضية عشبية">
+                    </div>
+                </div>
+            </div>
+
+            <!-- أولاً: اختبارات السرعة -->
+            <div class="axis-box">
+                <div class="axis-header">
+                    <h3>أولاً: اختبارات السرعة</h3>
+                    <span class="badge">الأزمنة بالثواني (أقل = أسرع)</span>
+                </div>
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label for="sprint10m">عدو 10 أمتار (ثانية)</label>
+                        <input type="number" step="0.01" id="sprint10m" placeholder="مثال: 1.75">
+                    </div>
+                    <div class="form-group">
+                        <label for="sprint20m">عدو 20 متراً (ثانية)</label>
+                        <input type="number" step="0.01" id="sprint20m" placeholder="مثال: 2.98">
+                    </div>
+                    <div class="form-group">
+                        <label for="sprint30m">عدو 30 متراً (ثانية)</label>
+                        <input type="number" step="0.01" id="sprint30m" placeholder="مثال: 4.15">
+                    </div>
+                    <div class="form-group">
+                        <label for="maxSpeed">السرعة القصوى (كم/ساعة)</label>
+                        <input type="number" step="0.1" id="maxSpeed" placeholder="مثال: 31.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="reactionTime">سرعة رد الفعل (مللي ثانية)</label>
+                        <input type="number" step="1" id="reactionTime" placeholder="مثال: 210">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ثانياً: اختبارات القوة -->
+            <div class="axis-box">
+                <div class="axis-header">
+                    <h3>ثانياً: اختبارات القوة</h3>
+                    <span class="badge">قوة انفجارية وأطراف</span>
+                </div>
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label for="verticalJump">القفز العمودي (سم)</label>
+                        <input type="number" step="0.5" id="verticalJump" placeholder="مثال: 54">
+                    </div>
+                    <div class="form-group">
+                        <label for="horizontalJump">القفز الأفقي من الثبات (سم)</label>
+                        <input type="number" step="1" id="horizontalJump" placeholder="مثال: 245">
+                    </div>
+                    <div class="form-group">
+                        <label for="explosivePower">مؤشر القوة الانفجارية (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="explosivePower" placeholder="مثال: 78">
+                    </div>
+                    <div class="form-group">
+                        <label for="lowerStrength">قوة الأطراف السفلية (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="lowerStrength" placeholder="مثال: 80">
+                    </div>
+                    <div class="form-group">
+                        <label for="upperStrength">قوة الأطراف العلوية (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="upperStrength" placeholder="مثال: 72">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ثالثاً: اختبارات الرشاقة والتنسيق -->
+            <div class="axis-box">
+                <div class="axis-header">
+                    <h3>ثالثاً: اختبارات الرشاقة والتنسيق</h3>
+                    <span class="badge">تغيير الاتجاه والتوازن</span>
+                </div>
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label for="tTest">اختبار T-Test (ثانية - أقل = أفضل)</label>
+                        <input type="number" step="0.01" id="tTest" placeholder="مثال: 9.60">
+                    </div>
+                    <div class="form-group">
+                        <label for="illinoisTest">اختبار Illinois (ثانية - أقل = أفضل)</label>
+                        <input type="number" step="0.01" id="illinoisTest" placeholder="مثال: 15.40">
+                    </div>
+                    <div class="form-group">
+                        <label for="codScore">تغيير الاتجاه COD (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="codScore" placeholder="مثال: 79">
+                    </div>
+                    <div class="form-group">
+                        <label for="balanceScore">التوازن (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="balanceScore" placeholder="مثال: 75">
+                    </div>
+                    <div class="form-group">
+                        <label for="coordinationScore">التوافق الحركي (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="coordinationScore" placeholder="مثال: 77">
+                    </div>
+                </div>
+            </div>
+
+            <!-- رابعاً: اختبارات التحمل -->
+            <div class="axis-box">
+                <div class="axis-header">
+                    <h3>رابعاً: اختبارات التحمل</h3>
+                    <span class="badge">هوائي ولاهوائي</span>
+                </div>
+                <div class="grid-3">
+                    <div class="form-group">
+                        <label for="yoyoScore">اختبار Yo-Yo (المسافة بالأمتار)</label>
+                        <input type="number" step="20" id="yoyoScore" placeholder="مثال: 1840">
+                    </div>
+                    <div class="form-group">
+                        <label for="beepScore">اختبار Beep Test (المستوى / النقاط 1-100)</label>
+                        <input type="number" step="0.1" id="beepScore" placeholder="مثال: 11.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="aerobicEndurance">التحمل الهوائي (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="aerobicEndurance" placeholder="مثال: 82">
+                    </div>
+                    <div class="form-group">
+                        <label for="anaerobicEndurance">التحمل اللاهوائي (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="anaerobicEndurance" placeholder="مثال: 76">
+                    </div>
+                </div>
+            </div>
+
+            <!-- خامساً: الاختبارات التقنية (تتكيف حسب الرياضة) -->
+            <div class="axis-box">
+                <div class="axis-header">
+                    <h3>خامساً: الاختبارات التقنية</h3>
+                    <span class="badge" id="techBadge">مخصصة لكرة القدم</span>
+                </div>
+                <div id="technicalFields" class="grid-3"></div>
+            </div>
+
+            <!-- سادساً: الاختبارات الذهنية والإدراكية -->
+            <div class="axis-box">
+                <div class="axis-header">
+                    <h3>سادساً: الاختبارات الذهنية والإدراكية</h3>
+                    <span class="badge">الذهن والقرار تحت الضغط</span>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label for="decisionSpeed">سرعة اتخاذ القرار (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="decisionSpeed" placeholder="مثال: 78">
+                    </div>
+                    <div class="form-group">
+                        <label for="focusScore">التركيز والتحكم النفسي (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="focusScore" placeholder="مثال: 80">
+                    </div>
+                    <div class="form-group">
+                        <label for="responseSpeed">سرعة الاستجابة (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="responseSpeed" placeholder="مثال: 76">
+                    </div>
+                    <div class="form-group">
+                        <label for="visualPerception">الإدراك البصري (1 - 100)</label>
+                        <input type="number" min="0" max="100" id="visualPerception" placeholder="مثال: 79">
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions-row">
+                <button type="submit" class="btn btn-primary">حفظ النتائج وتحليل الملف 📊</button>
+                <button type="button" class="btn btn-secondary" onclick="fillSampleData()">تعبئة بيانات تجريبية جاهزة</button>
+                <button type="reset" class="btn btn-secondary">مسح الحقول</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- القسم 2: ملف الرياضي، التحليل، الدفع التجريبي، والتقرير -->
+    <section id="view-profile" class="card hidden">
+        <div class="grid-2" style="align-items: end; margin-bottom: 14px;">
+            <div>
+                <h2 class="section-title" id="profileHeaderTitle">ملف الرياضي والتقرير التحليلي</h2>
+                <p class="section-sub" id="profileHeaderMeta" style="margin-bottom: 0;">اختر رياضياً محفوظاً لعرض نتائجه ومؤشرات تطوره.</p>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+                <label for="athleteSelector">اختر الرياضي:</label>
+                <select id="athleteSelector" onchange="selectAthlete(this.value)"></select>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>2. اختبار القوة الانفجارية (الوثب العمودي - سم):</label>
-            <input type="number" id="verticalJump" placeholder="مثال: 55">
+        <div id="emptyProfileNotice" class="axis-box hidden">
+            <p style="margin: 0;">لا توجد ملفات رياضيين محفوظة بعد. انتقل إلى تبويب <strong>التسجيل والاختبارات</strong> لإضافة أول تقييم.</p>
         </div>
 
-        <div class="form-group">
-            <label>3. مستوى التحمل والتعافي بعد الجهد:</label>
-            <select id="endurance">
-                <option value="high">مرتفع (استرجاع سريع للنبض)</option>
-                <option value="medium">متوسط (تعب طبيعي)</option>
-                <option value="low">منخفض (إرهاق سريع)</option>
-            </select>
+        <div id="profileContent" class="hidden">
+            <!-- مؤشرات أساسية مجانية أولية -->
+            <div class="kpi-grid">
+                <div class="kpi">
+                    <div class="label">المؤشر العام للأداء</div>
+                    <div class="value" id="kpiOverall">--/100</div>
+                </div>
+                <div class="kpi">
+                    <div class="label">قابلية التطور التقديرية</div>
+                    <div class="value" id="kpiPotential">--%</div>
+                </div>
+                <div class="kpi">
+                    <div class="label">المركز / الدور المقترح</div>
+                    <div class="value" id="kpiRole" style="font-size: 16px;">--</div>
+                </div>
+                <div class="kpi">
+                    <div class="label">حالة التقرير الكامل</div>
+                    <div class="value" id="kpiReportStatus" style="font-size: 16px;">مقفل (يتطلب دفع)</div>
+                </div>
+            </div>
+
+            <!-- شاشة قفل التقرير والدفع (نسخة تشغيل تجريبية على العميل) -->
+            <div id="paywallSection" class="paywall-box">
+                <h3 style="margin: 0 0 6px; color: #92400e;">🔒 التقرير الاحترافي الكامل مقفل لحين تأكيد الدفع</h3>
+                <p style="margin: 0 0 12px; font-size: 14px;">
+                    المؤشرات الأولية ظاهرة أعلاه، بينما فتح التحليل التفصيلي لكل محور، المقارنة المعيارية، خطة التدريب والتطوير، وتصدير <strong>PDF</strong> يتطلب اختيار باقة وتأكيد الدفع. (ملاحظة: في النسخة الإنتاجية النهائية يتم ربط بوابة دفع وخادم للتحقق الفعلي من المعاملة).
+                </p>
+                <div class="grid-3">
+                    <div class="plan-card">
+                        <h4>تحليل أساسي</h4>
+                        <div class="price">500 دج</div>
+                        <p style="font-size: 13px; margin: 0 0 10px;">ملخص المحاور + نقاط القوة والضعف.</p>
+                        <button type="button" class="btn btn-success" onclick="unlockReport('تحليل أساسي (500 دج)', 500)">تأكيد الدفع وفتح التقرير</button>
+                    </div>
+                    <div class="plan-card">
+                        <h4>تحليل شامل</h4>
+                        <div class="price">1,000 دج</div>
+                        <p style="font-size: 13px; margin: 0 0 10px;">تقييم كامل + توصيات بدنية وتقنية + PDF.</p>
+                        <button type="button" class="btn btn-success" onclick="unlockReport('تحليل شامل (1,000 دج)', 1000)">تأكيد الدفع وفتح التقرير</button>
+                    </div>
+                    <div class="plan-card">
+                        <h4>تحليل احترافي متقدم</h4>
+                        <div class="price">2,000 دج</div>
+                        <p style="font-size: 13px; margin: 0 0 10px;">تقرير متقدم + مسار تطور + توجيه ذهني وPDF.</p>
+                        <button type="button" class="btn btn-success" onclick="unlockReport('تحليل احترافي متقدم (2,000 دج)', 2000)">تأكيد الدفع وفتح التقرير</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- التقرير الكامل بعد فتحه -->
+            <div id="fullReportSection" class="hidden">
+                <div class="axis-box" style="background: #f0fdf4; border-color: #86efac;">
+                    <div class="axis-header">
+                        <h3>التقرير التحليلي الكامل لـ <span id="reportAthleteName"></span></h3>
+                        <span class="badge badge-green" id="reportPlanBadge">مدفوع</span>
+                    </div>
+                    <p id="reportSummary"></p>
+                    <p id="reportStrengthsWeaknesses"></p>
+                    <p id="reportRecommendations"></p>
+                </div>
+
+                <!-- جدول تفصيل المحاور الستة -->
+                <div class="axis-box">
+                    <h3 style="margin: 0 0 10px;">تفصيل درجات المحاور الستة</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>المحور</th>
+                                <th>الدرجة (من 100)</th>
+                                <th>التقدير</th>
+                            </tr>
+                        </thead>
+                        <tbody id="axesTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- رسم بياني للتطور عبر الجلسات -->
+            <div class="chart-wrap">
+                <h3 style="margin: 0 0 8px; font-size: 16px; color: var(--primary-dark);">منحنى التطور عبر جلسات الاختبار</h3>
+                <div id="evolutionChart"></div>
+            </div>
+
+            <div class="actions-row no-print">
+                <button type="button" class="btn btn-primary" onclick="printOrSavePdf()">طباعة / حفظ التقرير PDF 🖨️</button>
+                <button type="button" class="btn btn-secondary" onclick="switchView('assessment')">إضافة جلسة اختبار جديدة ➕</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- القسم 3: لوحة تحكم الإدارة والمدربين -->
+    <section id="view-admin" class="card hidden">
+        <h2 class="section-title">لوحة تحكم الإدارة والمدربين</h2>
+        <p class="section-sub">متابعة الرياضيين المسجلين، حالة فتح التقارير، وسجل المدفوعات التجريبية المسجلة على الجهاز.</p>
+
+        <div class="kpi-grid">
+            <div class="kpi">
+                <div class="label">إجمالي الرياضيين</div>
+                <div class="value" id="adminTotalAthletes">0</div>
+            </div>
+            <div class="kpi">
+                <div class="label">التقارير المفتوحة / المدفوعة</div>
+                <div class="value" id="adminPaidCount">0</div>
+            </div>
+            <div class="kpi">
+                <div class="label">إجمالي المداخيل المسجلة</div>
+                <div class="value" id="adminRevenue">0 دج</div>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>4. التحكم النفسي تحت ضغط المنافسة:</label>
-            <select id="mental">
-                <option value="high">تركيز عالٍ وهدوء تام</option>
-                <option value="medium">توتر خفيف يزول مع اللعب</option>
-                <option value="low">ارتباك وفقدان للتركيز</option>
-            </select>
+        <div class="axis-box">
+            <h3 style="margin: 0 0 10px;">سجل الرياضيين والتقارير</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>الرياضي</th>
+                        <th>العمر</th>
+                        <th>الرياضة</th>
+                        <th>المؤشر العام</th>
+                        <th>حالة التقرير</th>
+                        <th>إجراء</th>
+                    </tr>
+                </thead>
+                <tbody id="adminAthletesBody"></tbody>
+            </table>
         </div>
 
-        <button onclick="calculateGuidance()">تحليل النتائج وإصدار التوجيه 📊</button>
-    </div>
-
-    <!-- المرحلة 3: نتيجة التوجيه الرياضي -->
-    <div id="step3" class="hidden">
-        <div class="result-card">
-            <div class="result-title" id="athleteGreeting">تقرير التوجيه الرياضي</div>
-            <p id="physicalProfile"></p>
-            <p id="trainingAdvice"></p>
-            <p id="mentalAdvice"></p>
+        <div class="actions-row">
+            <button type="button" class="btn btn-secondary" onclick="clearAllData()">إعادة ضبط البيانات المحلية</button>
         </div>
-        <button onclick="resetApp()" style="background-color: #475569; margin-top: 15px;">إجراء تقييم لرياضي جديد 🔄</button>
-    </div>
+    </section>
 </div>
 
 <script>
+    const STORAGE_KEY = 'talent_bridge_ai_athletes_v1';
+
+    const SPORT_TECH_TESTS = {
+        "كرة القدم": [
+            { id: "techBallControl", label: "التحكم بالكرة (1 - 100)", placeholder: "مثال: 82" },
+            { id: "techDribbling", label: "المراوغة (1 - 100)", placeholder: "مثال: 79" },
+            { id: "techPassing", label: "دقة التمرير (1 - 100)", placeholder: "مثال: 84" },
+            { id: "techShooting", label: "التسديد (1 - 100)", placeholder: "مثال: 77" },
+            { id: "techDecision", label: "اتخاذ القرار بالكرة (1 - 100)", placeholder: "مثال: 80" }
+        ],
+        "ألعاب القوى": [
+            { id: "techStartMechanics", label: "ميكانيكية الانطلاق (1 - 100)", placeholder: "مثال: 85" },
+            { id: "techStrideFrequency", label: "التردد وطول الخطوة (1 - 100)", placeholder: "مثال: 83" },
+            { id: "techRhythm", label: "الإيقاع الحركي والانسيابية (1 - 100)", placeholder: "مثال: 80" }
+        ],
+        "كرة السلة": [
+            { id: "techDribble", label: "المحاورة والتحكم (1 - 100)", placeholder: "مثال: 78" },
+            { id: "techJumpShot", label: "دقة التصويب والوثب (1 - 100)", placeholder: "مثال: 75" },
+            { id: "techCourtVision", label: "قراءة الملعب والتمرير (1 - 100)", placeholder: "مثال: 81" }
+        ],
+        "رياضات قتالية": [
+            { id: "techComboSpeed", label: "سرعة ودقة التركيبات (1 - 100)", placeholder: "مثال: 82" },
+            { id: "techDefenseTiming", label: "توقيت الدفاع والتفادي (1 - 100)", placeholder: "مثال: 79" },
+            { id: "techDistanceControl", label: "إدارة المسافة والتوازن (1 - 100)", placeholder: "مثال: 80" }
+        ],
+        "السباحة": [
+            { id: "techStrokeEfficiency", label: "كفاءة الضربة والانسيابية (1 - 100)", placeholder: "مثال: 81" },
+            { id: "techTurnSpeed", label: "سرعة الدوران والانطلاق (1 - 100)", placeholder: "مثال: 78" }
+        ],
+        "رياضات أخرى": [
+            { id: "techSkillCore", label: "المهارة التخصصية الأساسية (1 - 100)", placeholder: "مثال: 76" },
+            { id: "techTacticalExecution", label: "التنفيذ الخططي (1 - 100)", placeholder: "مثال: 75" }
+        ]
+    };
+
+    let state = {
+        athletes: [],
+        selectedId: null
+    };
+
+    function loadState() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                state.athletes = Array.isArray(parsed.athletes) ? parsed.athletes : [];
+                state.selectedId = parsed.selectedId || (state.athletes[0] && state.athletes[0].id) || null;
+            }
+        } catch (e) {
+            state.athletes = [];
+        }
+    }
+
+    function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function renderTechnicalInputs() {
+        const sport = document.getElementById('athleteSport').value;
+        const container = document.getElementById('technicalFields');
+        const badge = document.getElementById('techBadge');
+        const tests = SPORT_TECH_TESTS[sport] || SPORT_TECH_TESTS["رياضات أخرى"];
+        badge.textContent = "مخصصة لـ: " + sport;
+        container.innerHTML = tests.map(t => `
+            <div class="form-group">
+                <label for="${t.id}">${t.label}</label>
+                <input type="number" min="0" max="100" id="${t.id}" placeholder="${t.placeholder}">
+            </div>
+        `).join('');
+    }
+
+    function clamp100(val) {
+        return Math.max(0, Math.min(100, Math.round(val)));
+    }
+
+    function avg(arr) {
+        const valid = arr.filter(n => typeof n === 'number' && !Number.isNaN(n));
+        if (!valid.length) return null;
+        return valid.reduce((a, b) => a + b, 0) / valid.length;
+    }
+
+    function numVal(id) {
+        const el = document.getElementById(id);
+        if (!el || el.value === '') return null;
+        const n = parseFloat(el.value);
+        return Number.isNaN(n) ? null : n;
+    }
+
+    function computeScores(data, sport) {
+        // تحويل أزمنة السرعة والرشاقة إلى درجات تقديرية من 100
+        const speedParts = [];
+        const s10 = numVal('sprint10m');
+        const s20 = numVal('sprint20m');
+        const s30 = numVal('sprint30m');
+        const maxSpd = numVal('maxSpeed');
+        const react = numVal('reactionTime');
+
+        if (s10 !== null) speedParts.push(clamp100(100 - (s10 - 1.55) * 45));
+        if (s20 !== null) speedParts.push(clamp100(100 - (s20 - 2.65) * 35));
+        if (s30 !== null) speedParts.push(clamp100(100 - (s30 - 3.85) * 30));
+        if (maxSpd !== null) speedParts.push(clamp100((maxSpd / 36) * 100));
+        if (react !== null) speedParts.push(clamp100(100 - (react - 150) * 0.25));
+
+        const strengthScore = avg([
+            numVal('verticalJump') !== null ? clamp100((numVal('verticalJump') / 70) * 100) : null,
+            numVal('horizontalJump') !== null ? clamp100((numVal('horizontalJump') / 290) * 100) : null,
+            numVal('explosivePower'),
+            numVal('lowerStrength'),
+            numVal('upperStrength')
+        ]);
+
+        const agilityParts = [];
+        const tTest = numVal('tTest');
+        const illinois = numVal('illinoisTest');
+        if (tTest !== null) agilityParts.push(clamp100(100 - (tTest - 8.5) * 25));
+        if (illinois !== null) agilityParts.push(clamp100(100 - (illinois - 14.0) * 15));
+        ['codScore', 'balanceScore', 'coordinationScore'].forEach(id => {
+            const v = numVal(id);
+            if (v !== null) agilityParts.push(clamp100(v));
+        });
+
+        const enduranceParts = [];
+        const yoyo = numVal('yoyoScore');
+        const beep = numVal('beepScore');
+        if (yoyo !== null) enduranceParts.push(clamp100((yoyo / 2600) * 100));
+        if (beep !== null) enduranceParts.push(clamp100((beep / 15) * 100));
+        ['aerobicEndurance', 'anaerobicEndurance'].forEach(id => {
+            const v = numVal(id);
+            if (v !== null) enduranceParts.push(clamp100(v));
+        });
+
+        const techTests = SPORT_TECH_TESTS[sport] || SPORT_TECH_TESTS["رياضات أخرى"];
+        const techScore = avg(techTests.map(t => numVal(t.id)));
+
+        const mentalScore = avg([
+            numVal('decisionSpeed'),
+            numVal('focusScore'),
+            numVal('responseSpeed'),
+            numVal('visualPerception')
+        ]);
+
+        const axes = {
+            "السرعة": speedScoreOrDefault(avg(speedParts)),
+            "القوة": strengthScore !== null ? clamp100(strengthScore) : 65,
+            "الرشاقة والتنسيق": avg(agilityParts) !== null ? clamp100(avg(agilityParts)) : 65,
+            "التحمل": avg(enduranceParts) !== null ? clamp100(avg(enduranceParts)) : 65,
+            "التقنية": techScore !== null ? clamp100(techScore) : 65,
+            "الذهنية والإدراكية": mentalScore !== null ? clamp100(mentalScore) : 65
+        };
+
+        const overall = clamp100(Object.values(axes).reduce((a, b) => a + b, 0) / 6);
+        const ageFactor = data.age <= 17 ? 12 : data.age <= 21 ? 8 : 5;
+        const potential = clamp100(overall * 0.65 + ageFactor + 18);
+
+        let role = "أداء متعدد الأدوار";
+        if (sport === "كرة القدم") {
+            if (axes["السرعة"] >= 75 && axes["التقنية"] >= 75) role = "جناح / مهاجم ديناميكي";
+            else if (axes["التحمل"] >= 78 && axes["الذهنية والإدراكية"] >= 75) role = "لاعب وسط محور / ربط";
+            else if (axes["القوة"] >= 76 && axes["الرشاقة والتنسيق"] >= 70) role = "قلب دفاع أو ظهير قوي";
+        } else {
+            const bestAxis = Object.entries(axes).sort((a, b) => b[1] - a[1])[0][0];
+            role = "مسار يعتمد على: " + bestAxis;
+        }
+
+        return { axes, overall, potential, role };
+    }
+
+    function speedScoreOrDefault(val) {
+        return val !== null ? clamp100(val) : 65;
+    }
+
+    function submitAssessment(event) {
+        event.preventDefault();
+        const name = document.getElementById('athleteName').value.trim();
+        const age = parseInt(document.getElementById('athleteAge').value, 10);
+        const country = document.getElementById('athleteCountry').value.trim() || "غير محدد";
+        const sport = document.getElementById('athleteSport').value;
+        const enteredBy = document.getElementById('enteredBy').value;
+        const notes = document.getElementById('coachNotes').value.trim();
+
+        const computed = computeScores({ age }, sport);
+        const session = {
+            date: new Date().toLocaleDateString('ar-DZ'),
+            enteredBy,
+            notes,
+            overall: computed.overall,
+            potential: computed.potential,
+            role: computed.role,
+            axes: computed.axes
+        };
+
+        let athlete = state.athletes.find(a => a.name.toLowerCase() === name.toLowerCase() && a.sport === sport);
+        if (!athlete) {
+            athlete = {
+                id: 'ath_' + Date.now(),
+                name,
+                age,
+                country,
+                sport,
+                paid: false,
+                planName: null,
+                amountPaid: 0,
+                sessions: [session]
+            };
+            state.athletes.unshift(athlete);
+        } else {
+            athlete.age = age;
+            athlete.country = country;
+            athlete.sessions.push(session);
+        }
+
+        state.selectedId = athlete.id;
+        saveState();
+        switchView('profile');
+        alert("تم حفظ النتائج وتحديث ملف الرياضي بنجاح.");
+    }
+
+    function fillSampleData() {
+        document.getElementById('athleteName').value = "ياسين منصوري";
+        document.getElementById('athleteAge').value = "17";
+        document.getElementById('athleteCountry').value = "الجزائر";
+        document.getElementById('athleteSport').value = "كرة القدم";
+        renderTechnicalInputs();
+        document.getElementById('sprint10m').value = "1.72";
+        document.getElementById('sprint30m').value = "4.10";
+        document.getElementById('verticalJump').value = "56";
+        document.getElementById('horizontalJump').value = "252";
+        document.getElementById('tTest').value = "9.45";
+        document.getElementById('yoyoScore').value = "2040";
+        document.getElementById('aerobicEndurance').value = "84";
+        document.getElementById('decisionSpeed').value = "80";
+        document.getElementById('focusScore').value = "82";
+        setTimeout(() => {
+            if (document.getElementById('techBallControl')) document.getElementById('techBallControl').value = "83";
+            if (document.getElementById('techDribbling')) document.getElementById('techDribbling').value = "81";
+            if (document.getElementById('techPassing')) document.getElementById('techPassing').value = "84";
+            if (document.getElementById('techShooting')) document.getElementById('techShooting').value = "78";
+            if (document.getElementById('techDecision')) document.getElementById('techDecision').value = "80";
+        }, 30);
+    }
+
+    function switchView(viewName) {
+        ['assessment', 'profile', 'admin'].forEach(v => {
+            document.getElementById('view-' + v).classList.toggle('hidden', v !== viewName);
+        });
+        const buttons = document.querySelectorAll('.tab-btn');
+        const map = { assessment: 0, profile: 1, admin: 2 };
+        buttons.forEach((btn, idx) => btn.classList.toggle('active', idx === map[viewName]));
+
+        if (viewName === 'profile') renderProfileView();
+        if (viewName === 'admin') renderAdminView();
+    }
+
+    function renderProfileView() {
+        const selector = document.getElementById('athleteSelector');
+        const emptyNotice = document.getElementById('emptyProfileNotice');
+        const content = document.getElementById('profileContent');
+
+        if (!state.athletes.length) {
+            emptyNotice.classList.remove('hidden');
+            content.classList.add('hidden');
+            selector.innerHTML = '';
+            return;
+        }
+
+        emptyNotice.classList.add('hidden');
+        content.classList.remove('hidden');
+
+        if (!state.selectedId || !state.athletes.some(a => a.id === state.selectedId)) {
+            state.selectedId = state.athletes[0].id;
+        }
+
+        selector.innerHTML = state.athletes.map(a =>
+            `<option value="${a.id}" ${a.id === state.selectedId ? 'selected' : ''}>${a.name} — ${a.sport} (${a.age} سنة)</option>`
+        ).join('');
+
+        const athlete = state.athletes.find(a => a.id === state.selectedId);
+        const latest = athlete.sessions[athlete.sessions.length - 1];
+
+        document.getElementById('profileHeaderTitle').textContent = `ملف الرياضي: ${athlete.name}`;
+        document.getElementById('profileHeaderMeta').textContent =
+            `الرياضة: ${athlete.sport} | العمر: ${athlete.age} سنة | البلد: ${athlete.country} | عدد الجلسات: ${athlete.sessions.length}`;
+
+        document.getElementById('kpiOverall').textContent = `${latest.overall}/100`;
+        document.getElementById('kpiPotential').textContent = `${latest.potential}%`;
+        document.getElementById('kpiRole').textContent = latest.role;
+        document.getElementById('kpiReportStatus').textContent = athlete.paid ? `مفتوح (${athlete.planName})` : "مقفل (يتطلب دفع)";
+
+        document.getElementById('paywallSection').classList.toggle('hidden', athlete.paid);
+        document.getElementById('fullReportSection').classList.toggle('hidden', !athlete.paid);
+
+        if (athlete.paid) {
+            renderFullReport(athlete, latest);
+        }
+
+        renderEvolutionChart(athlete.sessions);
+    }
+
+    function selectAthlete(id) {
+        state.selectedId = id;
+        saveState();
+        renderProfileView();
+    }
+
+    function unlockReport(planName, amount) {
+        const athlete = state.athletes.find(a => a.id === state.selectedId);
+        if (!athlete) return;
+        athlete.paid = true;
+        athlete.planName = planName;
+        athlete.amountPaid = amount;
+        saveState();
+        renderProfileView();
+    }
+
+    function renderFullReport(athlete, latest) {
+        document.getElementById('reportAthleteName').textContent = athlete.name;
+        document.getElementById('reportPlanBadge').textContent = athlete.planName || "تم فتح التقرير";
+
+        const entries = Object.entries(latest.axes).sort((a, b) => b[1] - a[1]);
+        const strongest = entries[0];
+        const weakest = entries[entries.length - 1];
+
+        document.getElementById('reportSummary').innerHTML =
+            `<strong>الملخص التحليلي:</strong> يحقق الرياضي مؤشراً عاماً قدره <strong>${latest.overall}/100</strong> مع قابلية تطور تقديرية تبلغ <strong>${latest.potential}%</strong>، ويُرشَّح لمسار: <strong>${latest.role}</strong>.`;
+
+        document.getElementById('reportStrengthsWeaknesses').innerHTML =
+            `<strong>نقاط القوة والأولوية:</strong> أبرز نقطة قوة حالياً هي محور <strong>${strongest[0]}</strong> (${strongest[1]}/100)، بينما يحتاج محور <strong>${weakest[0]}</strong> (${weakest[1]}/100) إلى متابعة وتطوير منظم.`;
+
+        document.getElementById('reportRecommendations').innerHTML =
+            `<strong>التوصيات المقترحة:</strong> تخصيص حصص مستهدفة لتطوير <strong>${weakest[0]}</strong> مع الحفاظ على نسق <strong>${strongest[0]}</strong>، وإعادة القياس بعد 4 إلى 6 أسابيع لمتابعة منحنى التطور الفعلي.`;
+
+        document.getElementById('axesTableBody').innerHTML = Object.entries(latest.axes).map(([axis, score]) => {
+            const label = score >= 80 ? "ممتاز" : score >= 65 ? "جيد" : "بحاجة لتطوير";
+            return `<tr><td>${axis}</td><td><strong>${score}/100</strong></td><td>${label}</td></tr>`;
+        }).join('');
+    }
+
+    function renderEvolutionChart(sessions) {
+        const wrap = document.getElementById('evolutionChart');
+        if (sessions.length === 1) {
+            wrap.innerHTML = `<p style="margin:0; font-size:13.5px;">الجلسة الأولى المسجلة بتاريخ <strong>${sessions[0].date}</strong> بدرجة عامة <strong>${sessions[0].overall}/100</strong>. أضف جلسة اختبار لاحقة لمشاهدة خط التطور عبر الزمن.</p>`;
+            return;
+        }
+
+        const w = 640, h = 190, pad = 36;
+        const stepX = (w - pad * 2) / (sessions.length - 1);
+        const points = sessions.map((s, i) => {
+            const x = pad + i * stepX;
+            const y = h - pad - ((s.overall / 100) * (h - pad * 2));
+            return { x, y, label: s.date, val: s.overall };
+        });
+
+        const poly = points.map(p => `${p.x},${p.y}`).join(' ');
+        const circles = points.map(p =>
+            `<circle cx="${p.x}" cy="${p.y}" r="5" fill="#1d4ed8"></circle>
+             <text x="${p.x}" y="${p.y - 10}" text-anchor="middle" font-size="11" fill="#0f172a">${p.val}</text>
+             <text x="${p.x}" y="${h - 10}" text-anchor="middle" font-size="10" fill="#64748b">${p.label}</text>`
+        ).join('');
+
+        wrap.innerHTML = `
+            <svg viewBox="0 0 ${w} ${h}" style="width:100%; max-height:220px; display:block;">
+                <line x1="${pad}" y1="${h - pad}" x2="${w - pad}" y2="${h - pad}" stroke="#cbd5e1" stroke-width="1.5"></line>
+                <line x1="${pad}" y1="${pad}" x2="${pad}" y2="${h - pad}" stroke="#cbd5e1" stroke-width="1.5"></line>
+                <polyline fill="none" stroke="#1d4ed8" stroke-width="2.5" points="${poly}"></polyline>
+                ${circles}
+            </svg>
+        `;
+    }
+
+    function renderAdminView() {
+        const paidAthletes = state.athletes.filter(a => a.paid);
+        const revenue = paidAthletes.reduce((sum, a) => sum + (a.amountPaid || 0), 0);
+
+        document.getElementById('adminTotalAthletes').textContent = state.athletes.length;
+        document.getElementById('adminPaidCount').textContent = paidAthletes.length;
+        document.getElementById('adminRevenue').textContent = `${revenue.toLocaleString()} دج`;
+
+        const tbody = document.getElementById('adminAthletesBody');
+        if (!state.athletes.length) {
+            tbody.innerHTML = `<tr><td colspan="6">لا توجد بيانات مسجلة بعد.</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = state.athletes.map(a => {
+            const latest = a.sessions[a.sessions.length - 1];
+            const statusBadge = a.paid
+                ? `<span class="badge badge-green">مفتوح (${a.amountPaid || 0} دج)</span>`
+                : `<span class="badge badge-warn">مقفل</span>`;
+            return `
+                <tr>
+                    <td><strong>${a.name}</strong></td>
+                    <td>${a.age}</td>
+                    <td>${a.sport}</td>
+                    <td>${latest ? latest.overall + '/100' : '--'}</td>
+                    <td>${statusBadge}</td>
+                    <td><button type="button" class="btn btn-secondary" style="padding:6px 10px; font-size:12px;" onclick="openAthleteProfile('${a.id}')">فتح الملف</button></td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    function openAthleteProfile(id) {
+        state.selectedId = id;
+        saveState();
+        switchView('profile');
+    }
+
+    function printOrSavePdf() {
+        const athlete = state.athletes.find(a => a.id === state.selectedId);
+        if (!athlete || !athlete.paid) {
+            alert("يرجى فتح التقرير الكامل أولاً قبل الطباعة أو الحفظ كـ PDF.");
+            return;
+        }
+        window.print();
+    }
+
+    function clearAllData() {
+        if (!confirm("هل أنت متأكد من حذف جميع البيانات المحفوظة محلياً؟")) return;
+        localStorage.removeItem(STORAGE_KEY);
+        state.athletes = [];
+        state.selectedId = null;
+        renderAdminView();
+    }
+
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js').catch(() => {});
     }
 
-    function goToTests() {
-        const name = document.getElementById('fullName').value;
-        const age = document.getElementById('age').value;
-        if (!name || !age) {
-            alert("يرجى إدخال الاسم والعمر أولاً للمتابعة.");
-            return;
-        }
-        document.getElementById('step1').classList.add('hidden');
-        document.getElementById('step2').classList.remove('hidden');
-    }
-
-    function calculateGuidance() {
-        const name = document.getElementById('fullName').value;
-        const sport = document.getElementById('sport').value;
-        const sprint = parseFloat(document.getElementById('sprint30m').value);
-        const jump = parseFloat(document.getElementById('verticalJump').value);
-        const endurance = document.getElementById('endurance').value;
-        const mental = document.getElementById('mental').value;
-
-        if (!sprint || !jump) {
-            alert("يرجى إدخال أرقام اختبار السرعة والوثب بدقة.");
-            return;
-        }
-
-        let profileText = "";
-        let trainingText = "";
-        let mentalText = "";
-
-        if (sprint <= 4.3 && jump >= 50) {
-            profileText = "⚡ <b>البصمة البدنية:</b> رياضي انفجاري سريع (ألياف عضلية سريعة الانقباض). مؤهل بامتياز للمناصب الهجومية، العدو السريع، والالتحامات الخاطفة في " + sport + ".";
-        } else if (endurance === "high") {
-            profileText = "🔋 <b>البصمة البدنية:</b> رياضي ذو كفاءة هوائية عالية وقدرة تحمل ممتازة. يناسب الأدوار التي تتطلب مجهوداً مستمراً طوال زمن المنافسة.";
-        } else {
-            profileText = "⚖️ <b>البصمة البدنية:</b> مستوى بدني متوازن يحتاج إلى تطوير القوة المميزة بالسرعة لرفع الكفاءة التنافسية.";
-        }
-
-        if (sprint > 4.5) {
-            trainingText = "🏋️ <b>التوجيه البدني:</b> التركيز في الدورات التدريبية القادمة على تدريبات البليومتريك (Plyometrics) وتطوير التردد الخطوي.";
-        } else {
-            trainingText = "🏋️ <b>التوجيه البدني:</b> الحفاظ على السرعة القصوى مع إدماج تمارين الرشاقة وتغيير الاتجاه تحت التعب.";
-        }
-
-        if (mental === "low") {
-            mentalText = "🧠 <b>التحضير النفسي:</b> يُنصح بتطبيق تقنيات التنفس العميق والهدوء النفسي قبل المنافسات لضبط مستوى الاستثارة العصبية.";
-        } else {
-            mentalText = "🧠 <b>التحضير النفسي:</b> ثبات انفعالي جيد، استمر في استخدام التصور الذهني قبل المباريات.";
-        }
-
-        document.getElementById('athleteGreeting').innerText = "ملف التوجيه: " + name;
-        document.getElementById('physicalProfile').innerHTML = profileText;
-        document.getElementById('trainingAdvice').innerHTML = trainingText;
-        document.getElementById('mentalAdvice').innerHTML = mentalText;
-
-        document.getElementById('step2').classList.add('hidden');
-        document.getElementById('step3').classList.remove('hidden');
-    }
-
-    function resetApp() {
-        document.getElementById('step3').classList.add('hidden');
-        document.getElementById('step1').classList.remove('hidden');
-    }
+    loadState();
+    renderTechnicalInputs();
 </script>
-
 </body>
 </html>
